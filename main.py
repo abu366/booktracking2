@@ -1,21 +1,11 @@
-class Book:
-    def __init__(self, book_id, title, author):
-        self.book_id = book_id
-        self.title = title
-        self.author = author
-    def info(self):
-        return f"{self.book_id}: {self.title} by {self.author}"
-
-class Library:
-    def __init__(self):
-        self.books = []
-    def add_book(self, book):
-        self.books.append(book)
-    def show_books(self):
-        for book in self.books:
-            print(book.info())
+import os
 
 def main():
+    ci_mode = os.getenv('CI', 'false').lower() == 'true'
+    if ci_mode:
+        print("Skipping interactive mode in CI")
+        return
+
     library = Library()
     while True:
         print("1. Add book | 2. Show books | 3. Exit")

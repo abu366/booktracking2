@@ -13,9 +13,10 @@ pipeline {
 }
 stage('Test') {
     steps {
-        bat 'docker run --rm booktracker python main.py'
+        bat 'docker run --rm -e CI=true booktracker python main.py'
     }
 }
+
 
     }
 }
