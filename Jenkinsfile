@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/YOUR_USERNAME/book-tracker.git'
+                git 'https://github.com/abu366/booktracking2.git'
             }
         }
         stage('Build') {
