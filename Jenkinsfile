@@ -13,7 +13,7 @@ pipeline {
 }
 stage('Test') {
     steps {
-        bat 'python main.py'
+        bat 'docker run --rm booktracker python main.py'
     }
 }
 
