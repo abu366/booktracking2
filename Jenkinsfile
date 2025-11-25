@@ -13,10 +13,10 @@ pipeline {
 }
 stage('Test') {
     steps {
-        bat 'docker run --rm -e CI=true booktracker python main.py'
+        bat 'docker run --rm booktracker python main.py add 1 "MyBook" "AuthorName"'
+        bat 'docker run --rm booktracker python main.py list'
     }
 }
-
 
     }
 }
