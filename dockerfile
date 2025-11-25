@@ -4,3 +4,4 @@ COPY . .
 RUN pip install -r requirements.txt || true
 CMD [ "python", "./main.py" ]
 
+

@@ -7,14 +7,15 @@ pipeline {
             }
         }
         stage('Build') {
-            steps {
-                sh 'docker build -t booktracker .'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'python main.py'
-            }
-        }
+    steps {
+        bat 'docker build -t booktracker .'
+    }
+}
+stage('Test') {
+    steps {
+        bat 'python main.py'
+    }
+}
+
     }
 }
