@@ -1,6 +1,6 @@
 FROM python:3.12
 WORKDIR /usr/src/app
 COPY . .
-CMD [ "python", "./main.py" ]
-
-
+RUN pip install flask
+EXPOSE 5000
+CMD ["python", "app.py"]
