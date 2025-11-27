@@ -3,23 +3,32 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                // Clone your GitHub repository
                 git 'https://github.com/abu366/booktracking2.git'
             }
         }
         stage('Build') {
             steps {
-                // Build the Docker image for your Flask app
                 bat 'docker build -t booktracker-web .'
             }
         }
-        stage('Test') {
+        stage('Run') {
             steps {
-                // Run a simple Python version check inside the container to verify image works
-                bat 'docker run --rm booktracker-web python --version'
-                
-                // Optionally, run additional non-interactive tests here
+                // Stop existing container if running (ignore errors)
+                bat '''
+                docker rm -f booktracker-container || exit 0
+                '''
+
+                // Run container in detached mode
+                bat 'docker run -d --name booktracker-container -p 5000:5000 booktracker-web'
             }
+        }
+    }
+    post {
+        always {
+            echo "You can access the app at http://localhost:5000/"
+            // Optionally keep container running; if you want to stop container on job finish, uncomment below
+            // bat 'docker stop booktracker-container'
+            // bat 'docker rm booktracker-container'
         }
     }
 }
